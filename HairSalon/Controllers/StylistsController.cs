@@ -21,6 +21,25 @@ namespace HairSalon.Controllers
       return View(model);
     }
 
-  }
+    public ActionResult Create()
+    {
+      return View();
+    }
 
+    [HttpPost]
+    public ActionResult Create(Stylist stylist)
+    {
+      if (stylist.FirstName != null && stylist.LastName != null && stylist.PhoneNumber != null && stylist.Specialty != null)
+      {
+        _db.Stylists.Add(stylist);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        ViewBag.ErrorMessage = "Please fill in all fields!";
+        return View();
+      } 
+    }
+  }
 }

@@ -17,3 +17,21 @@ a {
   color: peachpuff;
 }
 
+#errorMessage {
+  color: white;
+}  
+
+form {
+  display:block;
+  text-align: center;
+}
+
+input {
+  color: magenta;
+}
+
+
+
+
+
+

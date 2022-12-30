@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@model HairSalon.Models.Stylist
+
+<div class="container">
+  <h4>Add a new stylist</h4>
+
+  <p id="errorMessage">@ViewBag.ErrorMessage</p>  
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.FirstName, "First Name:  ")
+    @Html.TextBoxFor(model => model.FirstName)
+
+    @Html.LabelFor(model => model.LastName," Last Name: " )
+    @Html.TextBoxFor(model => model.LastName)
+
+    @Html.LabelFor(model => model.PhoneNumber, " Phone Number: ")
+    @Html.TextBoxFor(model => model.PhoneNumber)
+
+    @Html.LabelFor(model => model.Specialty, " Speciality: ")
+    @Html.TextBoxFor(model => model.Specialty)
+
+    <input type="submit" value="Add new stylist"/>
+  }
+  <br>
+  <p>@Html.ActionLink("Show all stylists", "Index")</p>
+  <p>@Html.ActionLink("Home", "Index", "Home")</p>
+</div>
