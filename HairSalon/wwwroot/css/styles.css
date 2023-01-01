@@ -15,9 +15,10 @@ body {
 a {
   font-family: Courgette;
   color: peachpuff;
+  text-decoration: underline white;
 }
 
-#errorMessage {
+#errorMessage, #addStylistMessage {
   color: white;
 }  
 
@@ -26,7 +27,7 @@ form {
   text-align: center;
 }
 
-input {
+input, select {
   color: magenta;
 }
 

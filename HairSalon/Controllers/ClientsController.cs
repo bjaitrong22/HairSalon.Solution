@@ -21,5 +21,34 @@ namespace HairSalon.Controllers
       
       return View(model);
     }
+
+    public ActionResult Create()
+    {
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "LastName");
+      return View();
+    }
+
+    [HttpPost]
+    public ActionResult Create(Client client)
+    {
+      if (client.StylistId == 0)
+      {
+        ViewBag.AddStylistMessage = "As a reminder, a stylist needs to be added before a you can add a client.";
+
+        return RedirectToAction("Create");
+      }
+      else if(client.FirstName != null && client.LastName != null && client.PhoneNumber != null && client.Description != null)
+      {
+        _db.Clients.Add(client);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+      else
+      {
+        ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "FirstName");
+        ViewBag.ErrorMessage = "Please fill in all fields!";
+        return View();
+      }
+    }
   }
 }
