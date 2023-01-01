@@ -9,5 +9,6 @@ namespace HairSalon.Models
     public string LastName { get; set; }
     public string Specialty { get; set; }
     public string PhoneNumber { get; set; }
+    public List<Client> Clients { get; set; }
   }
 }
