@@ -8,7 +8,7 @@
 <div class="container">
   <h2>Stylist Details</h2>
   <hr />
-  <h3>@Html.DisplayNameFor(model => model.LastName): @Html.DisplayFor(model => model.LastName)</h3>
+  <h3>Name: @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)</h3>
 
   @if (@Model.Clients.Count == 0)
   {
@@ -20,7 +20,7 @@
     <ul>
       @foreach (Client client in Model.Clients)
       {
-        <li>@Html.ActionLink($"{client.FirstName}", "Details", "Clients", new {id = client.ClientId})</li>
+        <li>@Html.ActionLink($"{client.LastName}, {client.FirstName}", "Details", "Clients", new {id = client.ClientId})</li>
       }
     </ul>
   }
