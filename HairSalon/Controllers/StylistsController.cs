@@ -50,26 +50,41 @@ namespace HairSalon.Controllers
     }
 
     public ActionResult Edit(int id)
-      {
-        Stylist thisStylist = _db.Stylists.FirstOrDefault( stylist => stylist.StylistId == id);
-        return View(thisStylist);
-      } 
+    {
+      Stylist thisStylist = _db.Stylists.FirstOrDefault( stylist => stylist.StylistId == id);
+      return View(thisStylist);
+    } 
 
-      [HttpPost]
-      public ActionResult Edit(Stylist stylist)
+    [HttpPost]
+    public ActionResult Edit(Stylist stylist)
+    {
+      if (stylist.FirstName != null && stylist.LastName != null && stylist.PhoneNumber != null && stylist.Specialty != null)
       {
-        if (stylist.FirstName != null && stylist.LastName != null && stylist.PhoneNumber != null && stylist.Specialty != null)
-        {
-          _db.Stylists.Update(stylist);
-          _db.SaveChanges();
-          return RedirectToAction("Index");
-        }
-        else
-        {
-          ViewBag.ErrorMessage = "Please fill in all fields!";
-          return View();
-        }
-        
+        _db.Stylists.Update(stylist);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
       }
+      else
+      {
+        ViewBag.ErrorMessage = "Please fill in all fields!";
+        return View();
+      }    
+    }
+
+    public ActionResult Delete(int id) 
+    {
+      Stylist thisStylist = _db.Stylists.FirstOrDefault(stylist => stylist.StylistId == id);
+      return View(thisStylist);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Stylist thisStylist = _db.Stylists.FirstOrDefault( stylist => stylist.StylistId == id);
+      _db.Stylists.Remove(thisStylist);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+
+    }
   }
 }
