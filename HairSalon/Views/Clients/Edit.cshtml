@@ -1,0 +1,36 @@
+@{
+  Layout = "_Layout";
+}
+
+@model HairSalon.Models.Client
+
+<div class="container">
+  <h2>Edit</h2>
+
+  <h4>Edit this client: @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)</h4>
+
+  <p id="errorMessage">@ViewBag.ErrorMessage</p>
+  @using (Html.BeginForm())
+  {
+    @Html.HiddenFor(model => model.ClientId)
+
+    @Html.LabelFor(model => model.FirstName, "First Name:  ")
+    @Html.TextBoxFor(model => model.FirstName)
+
+    @Html.LabelFor(model => model.LastName," Last Name: " )
+    @Html.TextBoxFor(model => model.LastName)
+
+    @Html.LabelFor(model => model.PhoneNumber, " Phone Number: ")
+    @Html.TextBoxFor(model => model.PhoneNumber)
+
+    @Html.LabelFor(model => model.Description, " Description: ")
+    @Html.TextBoxFor(model => model.Description)
+    <br>
+    @Html.LabelFor(model => model.Stylist, " Stylist: ")
+    @Html.DropDownList("StylistId")
+
+    <input type="submit" value="save" />
+  }
+
+  <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>
