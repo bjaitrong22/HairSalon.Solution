@@ -33,9 +33,10 @@ namespace HairSalon.Controllers
     {
       if (client.StylistId == 0)
       {
+        ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "FirstName");
         ViewBag.AddStylistMessage = "As a reminder, a stylist needs to be added before a you can add a client.";
 
-        return RedirectToAction("Create");
+        return View();
       }
       else if(client.FirstName != null && client.LastName != null && client.PhoneNumber != null && client.Description != null)
       {
@@ -49,6 +50,12 @@ namespace HairSalon.Controllers
         ViewBag.ErrorMessage = "Please fill in all fields!";
         return View();
       }
+    }
+
+    public ActionResult Details(int id)
+    {
+      Client thisClient = _db.Clients.Include(client => client.Stylist).FirstOrDefault(client => client.ClientId == id);
+      return View(thisClient);
     }
   }
 }

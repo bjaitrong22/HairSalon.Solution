@@ -14,6 +14,7 @@
   <p>Go to @Html.ActionLink("this page", "Create", "Stylists") to add a stylist.</p>
 
   <p id="errorMessage">@ViewBag.ErrorMessage</p>
+
   @using (Html.BeginForm())
   {
     @Html.LabelFor(model => model.FirstName, "First Name:  ")
@@ -33,4 +34,6 @@
     
     <input type="submit" value="Add new client" clas="btn btn-default"/>
   }
+  
+  <p>@Html.ActionLink("Show all clients", "Index")</P>
 </div>
