@@ -10,6 +10,10 @@
   <hr />
   <h3>Name: @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)</h3>
 
+  <h3>Phone Number: @Html.DisplayFor(model => model.PhoneNumber)</h3>
+
+  <h3>Specialty: @Html.DisplayFor(model => model.Specialty)</h3>
+
   @if (@Model.Clients.Count == 0)
   {
     <h3>No clients have been added for this stylist yet!</h3>
@@ -25,6 +29,8 @@
     </ul>
   }
 
+  <br>
+  <p>@Html.ActionLink("Add new Client", "Create", "Clients")</p>
   <P>@Html.ActionLink("Edit stylist", "Edit", new{ id = Model.StylistId} )</P>
   <P>@Html.ActionLink("Delete stylist", "Delete", new { id = Model.StylistId})</P>
   <p>@Html.ActionLink("Back to list", "Index")</p>
